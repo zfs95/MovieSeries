@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block title %}Most rated shows{% endblock %}
+
+{% block content %}
+
+
+<div class="form">
+    <div class="order_form">
+        <form action="/shows/most-rated/{{ page_number }}" method="GET">
+            <label for="order_by"><span class="white_text">Order:</span></label>
+            <select name="order_by" id="order_by" required>
+                <option value="rating">Rating</option>
+                <option value="title">Title</option>
+                <option value="runtime">Runtime</option>
+                <option value="year">Year</option>
+            </select>
+
+            <label for="order_direction"><span class="white_text">Direction:</span></label>
+            <select name="order_direction" id="order_direction" required>
+                <option value="ascending">Ascending</option>
+                <option value="descending">Descending</option>
+            </select>
+            <button type="submit" id="bt_order">Order</button>
+        </form>
+    </div>
+</div>
+
+
+
+  <div class="card">
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Runtime(min)</th>
+            <th>Rating</th>
+            <th>Genres</th>
+            <th>Trailer</th>
+            <th>Homepage</th>
+        </tr>
+        </thead>
+        <tbody>
+ 
+        {% for show in shows %}
+
+
+        <tr>
+            <td><a href="/show/{{ show.id }}">{{ show["title"] }}</a></td>
+            <td>{{ show["year"] }}</td>
+            <td>{{ show["runtime"] }}</td>
+            <td>{{ show["rating"] }}☆</td>
+            <td>{{ show["genres"] }}</td>
+    
+            {% if show["trailer"]==None %}
+            <td>No URL</td>
+            {% else %}
+            <td><a href='{{ show["trailer"] }}' target="_blank">{{ show["trailer"] }}</a></td>
+            {% endif %}
+    
+            {% if show["homepage"]==None %}
+            <td>No URL</td>
+            {% else %}
+            <td><a href='{{ show["homepage"] }}' target="_blank">{{ show["homepage"] }}</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+       </tbody>
+       </table>
+  </div>
+       
+
+
+  <div class="pagination">
+        {% if page_number==first_page %}
+            <a href="/shows/most-rated/1">&laquo;</a>
+            <a href="/shows/most-rated/{{ page_number }}" class="active">{{ page_number }}</a>
+            <a href="/shows/most-rated/{{ page_number+1 }}">{{ page_number+1 }}</a>
+            <a href="/shows/most-rated/{{ page_number+2 }}">{{ page_number+2 }}</a>
+            <a href="/shows/most-rated/{{ page_number+1 }}">Next</a>
+            <a href="/shows/most-rated/{{ last_page }}">&raquo;</a>
+        {% elif page_number==last_page %}
+            <a href="/shows/most-rated/1">&laquo;</a>
+            <a href="/shows/most-rated/{{ page_number-1 }}">Previous</a>
+            <a href="/shows/most-rated/{{ page_number-2 }}">{{ page_number-2 }}</a>
+            <a href="/shows/most-rated/{{ page_number-1 }}">{{ page_number-1 }}</a>
+            <a href="/shows/most-rated/{{ page_number }}" class="active">{{ page_number }}</a>
+            <a href="/shows/most-rated/{{ last_page }}">&raquo;</a>
+        {% else %}
+            <a href="/shows/most-rated/1">&laquo;</a>
+            <a href="/shows/most-rated/{{ page_number-1 }}">Previous</a>
+            <a href="/shows/most-rated/{{ page_number-1 }}">{{ page_number-1 }}</a>
+            <a href="/shows/most-rated/{{ page_number }}" class="active">{{ page_number }}</a>
+            <a href="/shows/most-rated/{{ page_number+1 }}">{{ page_number+1 }}</a>
+            <a href="/shows/most-rated/{{ page_number+1 }}">Next</a>
+            <a href="/shows/most-rated/{{ last_page }}">&raquo;</a>
+        {% endif %}
+
+  </div>
+
+
+{% endblock %}

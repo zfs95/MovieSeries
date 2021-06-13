@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block title %}{{ actor_name[0].name }} Shows{% endblock %}
+
+{% block content %}
+
+
+
+
+  
+
+
+  <div class="card">
+      <h2>{{ actor_name[0].name }}</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Birthday</th>
+            <th>Death</th>
+            <th>Biography</th>
+ 
+        </tr>
+        </thead>
+        <tbody>
+        {% for info in actor_info %}
+        <tr>
+            {% if info.birthday == None %}
+            <td>Not Available</td>
+            {% else %}
+            <td>{{ info.birthday }}</td>
+            {% endif %}
+
+            {% if info.death == None %}
+                <td>TBA</td>
+            {% else %}
+            <td>{{ info.death }}</td>
+            {% endif %}
+
+            {% if (info.biograpy == None or info.biography =="") %}
+            <td>Information Not Available</td>
+
+            {% else %}
+            <td><div class="card">{{ info.biography }}</div></td>
+            {% endif %}
+
+        </tr>
+        {% endfor %}
+
+       </tbody>
+       </table>
+  </div>
+  <div class="card">
+    <table>
+        <thead>
+        <tr>
+            <th>Played as</th>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Runtime(min)</th>
+            <th>Rating</th>
+            <th>Genres</th>
+            <th>Trailer</th>
+            <th>Homepage</th>
+        </tr>
+        </thead>
+        <tbody>
+ 
+        {% for show in shows %}
+
+
+        <tr>
+            {% for persona in character %}
+                {% if persona.id == show.id %}
+            <td>{{ persona['character_name'] }}</td>
+                {% endif %}
+            {% endfor %}
+            <td><a href="/show/{{ show.id }}">{{ show["title"] }}</a></td>
+            <td>{{ show["year"] }}</td>
+            <td>{{ show["runtime"] }}</td>
+            <td>{{ show["rating"] }}☆</td>
+            <td>{{ show["genres"] }}</td>
+    
+            {% if show["trailer"]==None %}
+            <td>No URL</td>
+            {% else %}
+            <td><a href='{{ show["trailer"] }}' target="_blank">{{ show["trailer"] }}</a></td>
+            {% endif %}
+    
+            {% if show["homepage"]==None %}
+            <td>No URL</td>
+            {% else %}
+            <td><a href='{{ show["homepage"] }}' target="_blank">{{ show["homepage"] }}</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+       </tbody>
+       </table>
+  </div>
+
+
+
+{% endblock %}

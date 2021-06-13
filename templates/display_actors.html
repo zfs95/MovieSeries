@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}All Actors{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome TV show lovers!</h2>
+    <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
+</div>
+
+<div class="card">
+    <table>
+        <thead>
+        <tr>
+            <th>Actors</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for actor in actors %}
+        <tr>
+            <td><a href="/actor/{{ actor.id }}">{{ actor["name"] }}</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

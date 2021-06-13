@@ -4,8 +4,6 @@
 
 # MovieSeries
 
-## Story
-
 MovieSeries is a imdb like web app. Here you can find all kind of series.
 You can search for most rated shows, filter them by rating, name, runtime or year,
 in an ascending or descending order. 

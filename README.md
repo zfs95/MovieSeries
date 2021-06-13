@@ -15,27 +15,27 @@ there is also a database that is ready (thanks to
 [trakt.tv](https://trakt.tv/)).
 
 
-Home page
+## Home page
 <p align="center">
    <img src="./screenshot/home.png" alt="Size Limit CLI" width="738">
 </p>
 
-Most Rated shows
+## Most Rated shows
 <p align="center">
    <img src="./screenshot/mostrated.png" alt="Size Limit CLI" width="738">
 </p>
 
-Single shows information
+## Single shows information
 <p align="center">
    <img src="./screenshot/movie.png" alt="Size Limit CLI" width="738">
 </p>
 
-All actors page
+## All actors page
 <p align="center">
    <img src="./screenshot/actor.png" alt="Size Limit CLI" width="738">
 </p>
 
-Actor's page
+## Actor's page
 <p align="center">
    <img src="./screenshot/singleactor.png" alt="Size Limit CLI" width="738">
 </p>
